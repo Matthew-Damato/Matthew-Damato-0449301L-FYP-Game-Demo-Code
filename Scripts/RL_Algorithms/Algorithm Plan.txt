@@ -1,0 +1,42 @@
+Requirements: 
+    - Achievements (As per recommendation)
+        A basic list of achievements. These will be included to incentivese the player to continue playing.
+    - AI
+        The ai proper must consider 3 elements:
+        
+        The first is the user's progress to the next module. This will check how well the user is doing in 
+        the module, and based on this, decide if they should progress to the next.
+
+        The second deals with the minigame selection. This records which minigames the user does best in 
+        based on grade obtained. This information is then used to present further minigames. For example,
+        if the user is detected to be continuously selecting 1 minigame and scoring top score, they are then required
+        to complete a differant minigame to a similar score to proceed. 
+
+        The final AI component would be in the social media aspect. This would include taking note of friend progress, 
+        and allowing certain features and aid when needed. For the sake of this demo, friend accounts will be hardcoded
+        in.
+
+    - Level seclection algorithm.
+        a number of gameobjects
+        get the amount of gameobjects listed
+        Also posess a list of preferences for levels. List gets a new entry if more are added.
+
+
+AI:
+    use sepetarate class
+    
+
+
+
+
+
+
+
+
+
+
+
+
+Still to complete:
+    Leaderboards
+    Achievements

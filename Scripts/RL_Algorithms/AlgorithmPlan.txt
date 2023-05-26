@@ -1,0 +1,188 @@
+Q-Learning:
+
+Q(s,a) = Q(s,a) + α(r + γ maxQ(s',a') - Q(s,a))
+
+Define S:
+    s is the state space.
+    The state space is the game object attributes. 
+    
+Define a:
+    a is the actions the player may take in the space.
+
+
+How would this fit in to what I have?
+
+The state s would be the game object. 
+However, that leaves a unacounted for. It could not be how well the player does, as that is the reward
+
+The reward, in this case, would be:
+    The player liking the content,
+    how well they perform
+    Their final grade.
+
+
+So:
+    what else can be done?
+
+________________________________________________________________________________________________________________
+
+Player performance analysis:
+    The grade obtained by the player.
+    How well they liked the minigame, should they choose to vote.
+
+Depending on how well they performed, give that mini-game a boost in priority.
+
+A = +1.5
+B = +1
+C = +0 -> This is the average.
+F = +0.5 -> If the player failed a minigame, this might mean that the questions mixed them up. Give it a higher priority.
+
+Like = +1
+Dislike = -1
+
+Time since last appeared:
+    If this minigame has not appeared for x loads in a row, +5 temporarily. 
+
+
+So: The probability of a minigame being chosen =
+    Grade obtained + Like + time since last appeared - rate of decay.
+
+Rate of Decay: 
+	As time goes by, the probability of being chosen decreases in order to keep within a certain limit.
+	
+
+
+
+
+Plan for progress:
+    Minigames give verying degrees of points outside of just the grade.
+    therefor:
+        points count towards the player point total and leaderboard. 
+        Progress is measured by obtaining a number of grades.
+        Achievements are tied to both points and grades.
+
+        The number of grades required to progress is also variable:
+            -> set base
+            -> add + 3 if average grade is a C
+            -> add + 2 if average grade is a B
+            -> If player gets 3 Cs in a row, add + 1
+            -> If player gets 2 Fs in a row, add + 2
+            -> If player gets 5 As in a row, add - 2 
+
+        So: 
+            base = 5
+            player gets 2 Fs, base is now 7, progress is 0.
+            player gets 3 Cs, base is now 8, progress is 3.
+            player gets 5 As, base is now 10 because average is B, progress 8
+            player gets 2 Bs, module complete. Base can only increase by average once.
+
+    In this way, progress is dynamically altered based on how well the player is doing.
+
+
+    Minigame dynamic alteration:
+        - if the player completes a minigame with a score of A [y] times in a row,
+            - increase points needed to get an A by [x]
+            OR 
+            - decrease time available for the player by [x]
+            
+
+    In this way, the minigames will get harder if the player is doing well on them. To further increase difficulty, the questions can be increased.
+
+
+
+
+///////////////////////////////////////////////////////////////////////////////
+
+Current progress:
+
+Identified how best to implement scaling difficulty:
+    have the number of games needed to progress change based on how well the player is doing.
+    have the difficulty of the minigame increase if the player is doing well on it.
+    Given that the player needs to get a score of A a number of times in a row, there is a naturally occuring upper limit to difficulty based on the base provided.
+
+Identified how to impliment the selection algorithm:
+    each minigame is given increased likelyhood based on:
+        how well the player did,
+        and how well the player liked the game.
+    The minigames are also given a large boost if they have not appeared in awhile.
+    There is also a decay factor decreasing the likelyhood of a minigame appearing over time, until its likelyhood reaches 0.
+
+Points will also only be used for the leaderboards and achievements. 
+This will still cause favoritism for certain mini-games, but will not allow for one to skip over a module quickly.
+
+What has been completed: 
+    All needed data is collected. 
+    Each of the 6 mini-games have been made.
+    An achievements system has been implemented. 
+    A leaderboard system has been implemented but not completed.
+    A profile system has been set up but not completed.
+
+    The algorithm is currently able to identify which mini-game to recommend based on grade and like, but this needs to be improved upon to reflect recent changes.
+    
+
+//////////////////////////////////////////////////////////////////////////////
+
+
+Progress Report: 
+
+The algorithm methods for level allocation are complete
+
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+Progress Report:
+
+The reward allocation algorithms are now hooked up and should be functional.
+
+//////////////////////////////////////////////////////////////////////////////
+
+Next: Finish the generation algorithms
+
+
+Rec1 and Rec2 are the 2 recommendations.
+
+Recommendation_Algorithm = recommendation algorithm
+
+Ok. So, having an algorithm class is not working...
+I'll try removing the class.
+
+
+
+
+/////////////////////////////////////////////////////////////////////////////
+
+Progress Report: 
+
+Recommendations are being generated correctly. 
+Next step would be to finish hooking them up to the menu.
+
+//////////////////////////////////////////////////////////////////////////////
+
+Change mini-game names to Type
+
+
+
+MiniGame 2 needs improvement:
+    Player cube bacomes a turret.
+    Answer is submitted by pressing WASD or the Arrow Keys.
+    projectile launched. If answer is correct, destroy target. Else, have question shoot player.
+    Code is already near all there
+        Need to swap button press for arrow/wasd.
+        add bullets.
+
+MiniGame 3 needs shooting system incorported. 
+    This shouldn't take much work compared to the other, so start with this!!!
+    player types answer. 
+        If answer is correct:
+            shoot projectile at target,
+            have player's bar build up.
+        If answer is incorrect:
+            target hits player,
+            breaks their bar.
+        
+        Player can also shift to next question.
+
+        Bar is a ui element.
+
+

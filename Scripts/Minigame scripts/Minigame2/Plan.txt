@@ -1,0 +1,49 @@
+Plan of second minigame to finish by the 16th:
+
+- Player is represented by an icon and has a "term" or answer displayed on the bottom of the screen.
+- the player must launch it into the correct definition or question
+- the player earns a point for every correct answer they obtain.
+- the player does not lose a point for incorrect guesses.
+- the player is acting on a timer for each shot.
+
+As such, this will function as a basic multiple choice exersize, with no need to roam about an enviroment. players 
+instead are asked to act fast against a timer to earn points. A fixed number of questions are asked.
+
+
+How to handle the questions:
+    players need only click on the correct answer, and it will be selected. 
+    Should they guess wrong, they lose a life.
+    if time runs out, they lose a life.
+    Earn points by guessing correctly.
+    This has a higher point pay then the previous game on account of difficulty.
+
+Common names:
+    points_earned
+    GameComplete
+    PassOrFail
+    Grade
+
+
+How am I going to decide on a correct answer? 
+    Generate 5 random numbers. 
+    I need ONLY 2 numbers to match. These are the correct answers. -> inefficient. Too many possiblilities, and it would not work.
+    Instead:
+        Create a 6th list containing correct answers to each question. 
+        Have the player generated answer correspond to the 
+
+
+
+Progress:
+    Questions are being randomly generated correctly.
+    Next, I need a functioning timer, which leaves each question generated for x sec. Done using refreash
+    Next, a way to answer:
+        Buttons!
+    Done. Answers can now be selected. 
+    
+Final step: 
+    Make the needed variables for the game manager script to read.
+    Done!
+
+
+
+Finished
